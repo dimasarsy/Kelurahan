@@ -6,15 +6,18 @@ class User extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        is_logged_in();
+        is_user();
+        $this->load->library('form_validation');
+        $this->load->model('m_crud');
     }
 
     public function index()
     {
+        $this->load->model('m_crud');
+        
         $data['title'] = 'My Profile';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
         $data['judul'] = 'My Profile';
+        $data['warga'] = $this->m_crud->readBy('tbl_warga', ['nik' => $this->session->userdata('nik')])[0];
         
         $this->load->view('dashboard/templates/header', $data);
         $this->load->view('dashboard/templates/sidebar', $data);
@@ -30,7 +33,6 @@ class User extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->form_validation->set_rules('name', 'Full Name', 'required|trim');
-        
 
         if ($this->form_validation->run() == false) {
             $this->load->view('dashboard/templates/header', $data);
@@ -115,4 +117,136 @@ class User extends CI_Controller
         }
     }
 
+    function profil(){
+        
+        is_user();
+        
+        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        $data['warga'] = $this->m_crud->readBy('tbl_warga', ['nik' => $this->session->userdata('nik')])[0];
+        $data['judul'] = 'Surat KTP';
+        
+        $data['d_jk'] = JK;
+		$data['d_goldar'] = GOLDAR;
+		$data['d_agama'] = AGAMA;
+		$data['d_pendidikan'] = PENDIDIKAN;
+		$data['d_pekerjaan'] = PEKERJAAN;
+		$data['d_rw'] = DUSUN;
+
+        $this->load->view('dashboard/templates/header', $data);
+        $this->load->view('dashboard/templates/sidebar', $data);
+        $this->load->view('dashboard/templates/topbar', $data);
+		$this->load->view('user/profil/edit_profil', $data);
+        $this->load->view('dashboard/templates/footer', $data);
+	}
+
+    function edit_profil(){
+        
+        $data['title'] = 'Change Profil';
+        $data['judul'] = 'Change Profil';
+        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+
+        $default_img = "default.jpg";
+		$nik = $this->session->userdata('nik');
+
+        $config['upload_path']   = "./assets/img/profile/";
+		$config['allowed_types'] = 'jpg|png|jpeg';
+		$config['max_size']      = 2048;
+        
+        $data = array(
+            'name' => $this->input->post('name'),
+            'no_telp' => $this->input->post('no_telp'),
+            'tempat_lahir' => $this->input->post('tempat_lahir'),
+            'tgl_lahir' => $this->input->post('tgl_lahir'),
+            'jk' => $this->input->post('jk'),
+            'goldar' => $this->input->post('goldar'),
+            'pendidikan' => $this->input->post('pendidikan'),
+            'pekerjaan' => $this->input->post('pekerjaan'),
+            'agama' => $this->input->post('agama'),
+            'kawin' => $this->input->post('kawin'),
+            'alamat' => $this->input->post('alamat'),
+            'rw' => $this->input->post('rw'),
+            'rt' => $this->input->post('rt'),
+        );
+
+         $upload_image = $_FILES['image']['name'];
+
+         if ($upload_image) {
+             $config['allowed_types'] = 'gif|jpg|png';
+             $config['max_size']      = '2048';
+             $config['upload_path'] = './assets/img/profile/';
+
+             $this->load->library('upload', $config);
+             $this->upload->initialize($config); 
+
+             if ($this->upload->do_upload('image')) {
+                 $old_image = $data['user']['image'];
+                 if ($old_image != 'default.jpg') {
+                     unlink(FCPATH . 'assets/img/profile/' . $old_image);
+                 }
+                 $new_image = $this->upload->data('file_name');
+                 $this->db->set('image', $new_image);
+             } else {
+                var_dump($this->upload->display_errors());
+             }
+         }
+         
+         $upload_file_ktp = $_FILES['ktp_file']['name'];
+
+         if ($upload_file_ktp) {
+             $config['allowed_types'] = 'gif|jpg|png|pdf';
+             $config['max_size']      = '2048';
+             $config['upload_path'] = './assets/img/profile/';
+
+             $this->load->library('upload', $config);
+             $this->upload->initialize($config); 
+
+             if ($this->upload->do_upload('ktp_file')) {
+                 $old_file = $data['tbl_warga']['ktp_file'];
+                 if ($old_file != 'default.jpg') {
+                     unlink(FCPATH . 'assets/img/profile/' . $old_file);
+                 }
+                 $new_file = $this->upload->data('file_name');
+                 $this->db->set('ktp_file', $new_file);
+             } else {
+                var_dump($this->upload->display_errors());
+             }
+         }
+         $upload_file_kk= $_FILES['kk_file']['name'];
+
+         if ($upload_file_kk) {
+             $config['allowed_types'] = 'gif|jpg|png|pdf';
+             $config['max_size']      = '2048';
+             $config['upload_path'] = './assets/img/profile/';
+
+             $this->load->library('upload', $config);
+             $this->upload->initialize($config); 
+
+             if ($this->upload->do_upload('kk_file')) {
+                $old_file = $data['tbl_warga']['kk_file'];
+                if ($old_file != 'default.jpg') {
+                    unlink(FCPATH . 'assets/img/profile/' . $old_file);
+                }
+                $new_file = $this->upload->data('file_name');
+                $this->db->set('kk_file', $new_file);
+            } else {
+               var_dump($this->upload->display_errors());
+            }
+         }
+         
+
+        $this->db->set($data);
+        $this->db->where('nik', $nik);
+        $this->db->update('tbl_warga');
+
+        $data = [
+            'name' => $this->input->post('name'),
+        ];
+        $this->db->set($data);
+        $this->db->where('nik', $nik);
+        $this->db->update('user');
+        
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data has been changed</div>');
+        redirect('user');
+
+    }
 }

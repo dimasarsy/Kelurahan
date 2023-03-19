@@ -83,3 +83,62 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+
+
+define('JK', array('l'=>'Laki-laki', 'p'=>'Perempuan'));
+define('GOLDAR', array('a'=>'A', 'b'=>'B', 'ab'=>'AB', 'o'=>'O', 'belum'=>'Belum Tahu'));
+define('DUSUN', array('0'=>'Belum Diisi','1'=>'Pager', '2'=>'Ngumbuk', '3'=>'Bendet'));
+define('AGAMA', array('islam'=>'Islam', 'kristen'=>'Kristen', 'katolik'=>'Katolik', 'hindu'=>'Hindu', 'buddha'=>'Buddha', 'konghucu'=>'Konghucu', 'lain'=>'Lainnya'));
+define('PENDIDIKAN', array('sd'=>'SD', 'sltp'=>'SLTP/Sederajat', 'slta'=>'SLTA/Sederajat', 'd1'=>'Diploma 1', 'd2'=>'Diploma 2', 'd3'=>'Diploma 3', 's1'=>'Sarjana/Sederajat', 's2'=>'Magister', 's3'=>'Doktor'));
+define('PEKERJAAN', array('petani'=>'Petani/Peternak', 'swasta'=>'Karyawan Swasta', 'pns'=>'PNS', 'wiraswasta'=>'Wiraswasta', 'pelajar'=>'Pelajar/Mahasiswa', 'rumah'=>'Mengurus Rumah Tangga', 'lain'=>'Lainnya'));
+define('PERKAWINAN', array('belum'=>'Belum Menikah', 'sudah'=>'Sudah Menikah', 'cerai_hidup'=>'Cerai Hidup', 'cerai_mati'=>'Cerai Mati'));
+define('HUBUNGAN', array('anak'=>'Anak','orang_tua'=>'Orang Tua','saudara'=>'Saudara','pasangan'=>'Suami/Istri','tetangga'=>'Tetangga','lain'=>'Lain-lain'));
+define('TABEL', array('kelahiran' => 'tbl_kelahiran', 'kematian'=>'tbl_kematian', 'ktp'=>'tbl_ktp', 'kk'=>'tbl_kk', 'sktm'=>'tbl_sktm', 'domisili'=>'tbl_domisili', 'pindah'=>'tbl_pindah', 'skck'=>'tbl_skck'));
+define('CAPTION', array('kelahiran' => 'Surat Kelahiran', 'kematian'=>'Surat Kematian', 'ktp'=>'Pembuatan KTP', 'kk'=>'Pembuatan KK', 'sktm'=>'Surat SKTM', 'domisili'=>'Surat Domisili', 'pindah'=>'Surat Pindah', 'skck'=>'Surat SKCK'));
+
+define('BIDANG_BUMDES', array('layanan'=>'Layanan','keuangan'=>'Keuangan','penyewaan'=>'Penyewaan','perantara'=>'Perantara','perdagangan'=>'Perdagangan','induk'=>'Induk Usaha'));
+define('BIDANG_UMKM', array('otomotif'=>'Otomotif','fashion'=>'Fashion','kuliner'=>'Kuliner','kecantikan'=>'Kecantikan','kerajinan'=>'Kerajinan Tangan','travel'=>'Tour & Travel','agribisnis'=>'Agribisnis','pendidikan'=>'Pendidikan','kelontong'=>'Toko Kelontong'));
+// --------------------------------------------------------------------------------
+define('TAHUN', '2021');
+
+// Status User
+define('user_baru', 0);
+define('profil_lengkap', 1);
+// define('sudah_valid', 2);
+
+// Role User
+define('warga',0);
+define('kades',1);
+define('sekretaris',2);
+define('bpd',3);
+define('master',99);
+
+// Status Surat
+define('surat_ditolak',-1);
+define('surat_baru',0);
+define('surat_proses',1);
+define('surat_selesai',2);
+define('surat_diterima',3);
+
+// Status Pengaduan
+define('pengaduan_baru',0);
+define('pengaduan_proses',1);
+define('pengaduan_selesai',2);
+define('pengaduan_ditolak',3);
+
+// Status Kegiatan
+define('kegiatan_baru',0);
+define('kegiatan_rencana',1);
+define('kegiatan_proses',2);
+define('kegiatan_selesai',3);
+define('kegiatan_arsip',4);
+define('kegiatan_revisi',5);
+
+// Status Berita
+define('berita_baru',0);
+define('berita_valid',1);
+define('berita_diturunkan',2);
+define('berita_ditolak',3);
+
+define('kata_sandi', 'pagerngumbukmakmur');

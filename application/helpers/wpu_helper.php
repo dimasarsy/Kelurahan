@@ -1,27 +1,45 @@
 <?php 
 
-function is_logged_in()
+function is_admin()
 {
     $ci = get_instance();
     if (!$ci->session->userdata('email')) {
         redirect('auth');
     } else {
         $role_id = $ci->session->userdata('role_id');
-        $menu = $ci->uri->segment(1);
 
-        $queryMenu = $ci->db->get_where('user_menu', ['menu' => $menu])->row_array();
-        $menu_id = $queryMenu['id'];
-
-        $userAccess = $ci->db->get_where('user_access_menu', [
-            'role_id' => $role_id,
-            'menu_id' => $menu_id
-        ]);
-
-        if ($userAccess->num_rows() < 1) {
+        if ($role_id ==  2) {
             redirect('auth/blocked');
         }
     }
 }
+function is_user()
+{
+    $ci = get_instance();
+    if (!$ci->session->userdata('email')) {
+        redirect('auth');
+    } else {
+        $role_id = $ci->session->userdata('role_id');
+            
+        if ($role_id ==  1) {
+            redirect('auth/blocked');
+        }    
+    }
+}
+
+// function is_user_full()
+// {
+//     $ci = get_instance();
+//     if (!$ci->session->userdata('email')) {
+//         redirect('auth');
+//     } else {
+//         $status = $ci->session->userdata('status');
+            
+//         if ($status == 0) {
+//             redirect('user/profil');
+//         }    
+//     }
+// }
 
 
 function check_access($role_id, $menu_id)

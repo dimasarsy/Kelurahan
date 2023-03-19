@@ -38,11 +38,13 @@ class Auth extends CI_Controller
 
         // jika usernya ada
         if ($user) {
-            // jika usernya aktif
-            if ($user['is_active'] == 1) {
+
                 // cek password
                 if (password_verify($password, $user['password'])) {
                     $data = [
+                        'name' => $user['name'],
+                        'nik' => $user['nik'],
+                        'image' => $user['image'],
                         'email' => $user['email'],
                         'role_id' => $user['role_id']
                     ];
@@ -50,16 +52,12 @@ class Auth extends CI_Controller
                     if ($user['role_id'] == 1) {
                         redirect('dashboard');
                     } else {
-                        redirect('User');
+                        redirect('Home');
                     }
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password!</div>');
                     redirect('auth');
                 }
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">This email has not been activated!</div>');
-                redirect('auth');
-            }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email is not registered!</div>');
             redirect('auth');
@@ -73,6 +71,7 @@ class Auth extends CI_Controller
             redirect('user');
         }
 
+        $this->form_validation->set_rules('nik', 'NIK', 'required');
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
             'is_unique' => 'This email has already registered!'
@@ -93,24 +92,26 @@ class Auth extends CI_Controller
         } else {
             $email = $this->input->post('email', true);
             $data = [
+                'nik' => $this->input->post('nik', true),
                 'name' => htmlspecialchars($this->input->post('name', true)),
                 'email' => htmlspecialchars($email),
                 'image' => 'default.jpg',
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                 'role_id' => 2,
-                'is_active' => 0,
+                'status' => 0,
                 'date_created' => time()
             ];
 
-            // siapkan token
-            // $token = base64_encode(random_bytes(32));
-            // $user_token = [
-            //     'email' => $email,
-            //     'token' => $token,
-            //     'date_created' => time()
-            // ];
-
             $this->db->insert('user', $data);
+            
+            $data = [
+                'nik' => $this->input->post('nik', true),
+                'name' => htmlspecialchars($this->input->post('name', true)),
+                'image' => 'default.jpg',
+
+            ];
+            $this->db->insert('tbl_warga', $data);
+            
             // $this->db->insert('user_token', $user_token);
 
             // $this->_sendEmail($token, 'verify');
