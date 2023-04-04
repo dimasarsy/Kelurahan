@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link href="<?= base_url('assets/'); ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <title><?php echo $judul; ?> | Kelurahan Palmerah</title>
@@ -45,19 +45,29 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php base_url() ?>home">Home</a>
+                        <a class="nav-link" href="<?= base_url('home'); ?>">
+                            <div class="<?=($active=='home'?'active':'')?>">Home</div>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php base_url() ?>terbaru">Info Terbaru</a>
+                        <a class="nav-link" href="<?= base_url('berita'); ?>">
+                            <div class="<?=($active=='berita'?'active':'')?>">Info Terbaru</div>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?=base_url()?>layanan">Layanan</a>
+                        <a class="nav-link" href="<?= base_url('layanan'); ?>">
+                            <div class="<?=($active=='layanan'?'active':'')?>">Layanan</div>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php base_url() ?>about">Tentang</a>
+                        <a class="nav-link" href="<?= base_url('about'); ?>">
+                            <div class="<?=($active=='about'?'active':'')?>">Tentang</div>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php base_url() ?>Laporan">Lapor</a>
+                        <a class="nav-link" href="<?= base_url('laporan'); ?>">
+                            <div class="<?=($active=='laporan'?'active':'')?>">Lapor</div>
+                        </a>
                     </li>
                 </ul>
 

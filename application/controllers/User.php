@@ -15,8 +15,8 @@ class User extends CI_Controller
     {
         $this->load->model('m_crud');
         
-        $data['title'] = 'My Profile';
         $data['judul'] = 'My Profile';
+        $data['active'] = 'user';
         $data['warga'] = $this->m_crud->readBy('tbl_warga', ['nik' => $this->session->userdata('nik')])[0];
         
         $this->load->view('dashboard/templates/header', $data);
@@ -28,7 +28,7 @@ class User extends CI_Controller
     
     public function edit()
     {
-        $data['title'] = 'Edit Profile';
+        $data['active'] = 'user';
         $data['judul'] = 'Edit Profile';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
@@ -78,8 +78,9 @@ class User extends CI_Controller
 
     public function changePassword()
     {
-        $data['title'] = 'Change Password';
+        $data['active'] = 'change_password';
         $data['judul'] = 'Change Password';
+        $data['title'] = 'Change Password';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->form_validation->set_rules('current_password', 'Current Password', 'required|trim');
@@ -124,6 +125,7 @@ class User extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
         $data['warga'] = $this->m_crud->readBy('tbl_warga', ['nik' => $this->session->userdata('nik')])[0];
         $data['judul'] = 'Surat KTP';
+        $data['active'] = 'edit_profil';
         
         $data['d_jk'] = JK;
 		$data['d_goldar'] = GOLDAR;
@@ -141,9 +143,9 @@ class User extends CI_Controller
 
     function edit_profil(){
         
-        $data['title'] = 'Change Profil';
+        $data['active'] = 'edit_profil';
         $data['judul'] = 'Change Profil';
-        $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
+        // $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
 
         $default_img = "default.jpg";
 		$nik = $this->session->userdata('nik');

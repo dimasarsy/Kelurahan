@@ -13,6 +13,7 @@ class Layanan extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['judul'] = 'Layanan';
+        $data['active'] = 'layanan';
 
         $this->load->view('templates/header', $data);
         $this->load->view('User/layanan/index', $data);
@@ -25,6 +26,7 @@ class Layanan extends CI_Controller
 
         $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
         $data['judul'] = 'Surat KTP';
+		$data['active'] = 'layanan';
 
         $this->load->view('templates/header', $data);
         $this->load->view('User/layanan/surat_kelahiran');
@@ -80,6 +82,7 @@ class Layanan extends CI_Controller
 		$data['warga'] = $this->m_crud->readBy('tbl_warga', ['nik' => $this->session->userdata('nik')])[0];
 
         $data['judul'] = 'Surat KTP';
+		$data['active'] = 'layanan';
 
         $this->load->view('templates/header', $data);
         $this->load->view('User/layanan/surat_ktp');
@@ -136,6 +139,7 @@ class Layanan extends CI_Controller
 
         $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
         $data['judul'] = 'Surat KTP';
+		$data['active'] = 'layanan';
 
         $this->load->view('templates/header', $data);
         $this->load->view('User/layanan/surat_kk');
@@ -190,7 +194,8 @@ class Layanan extends CI_Controller
 
         $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
 		$data['warga'] = $this->m_crud->readBy('tbl_warga', ['nik' => $this->session->userdata('nik')])[0];
-
+		$data['active'] = 'layanan';
+		
 		$data['d_jk'] = JK;
 		$data['d_goldar'] = GOLDAR;
 		$data['d_agama'] = AGAMA;
@@ -254,6 +259,8 @@ class Layanan extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
 		$data['warga'] = $this->m_crud->readBy('tbl_warga', ['nik' => $this->session->userdata('nik')])[0];
 
+		$data['active'] = 'layanan';
+		
 		$data['d_jk'] = JK;
 		$data['d_goldar'] = GOLDAR;
 		$data['d_agama'] = AGAMA;
@@ -317,6 +324,8 @@ class Layanan extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
 		$data['warga'] = $this->m_crud->readBy('tbl_warga', ['nik' => $this->session->userdata('nik')])[0];
 
+		$data['active'] = 'layanan';
+		
 		$data['d_jk'] = JK;
 		$data['d_goldar'] = GOLDAR;
 		$data['d_agama'] = AGAMA;
@@ -383,7 +392,8 @@ class Layanan extends CI_Controller
 
         $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
 		$data['warga'] = $this->m_crud->readBy('tbl_warga', ['nik' => $this->session->userdata('nik')])[0];
-
+		$data['active'] = 'layanan';
+		
 		$data['d_jk'] = JK;
 		$data['d_goldar'] = GOLDAR;
 		$data['d_agama'] = AGAMA;
@@ -451,7 +461,8 @@ class Layanan extends CI_Controller
 
         $data['user'] = $this->db->get_where('user', ['nik' => $this->session->userdata('nik')])->row_array();
 		$data['warga'] = $this->m_crud->readBy('tbl_warga', ['nik' => $this->session->userdata('nik')])[0];
-
+		$data['active'] = 'layanan';
+		
 		$data['d_jk'] = JK;
 		$data['d_goldar'] = GOLDAR;
 		$data['d_agama'] = AGAMA;
@@ -524,6 +535,7 @@ class Layanan extends CI_Controller
 
         $data['title'] = 'My Profile';
         $title['judul'] = 'My Profile';
+        $data['active'] = 'status_layanan';
 
         $this->load->view('dashboard/templates/header', $title);
         $this->load->view('dashboard/templates/sidebar', $data);
@@ -873,18 +885,18 @@ class Layanan extends CI_Controller
 		$caption = CAPTION[$surat];
 		$view = array('ktp'=>'detail_ktp', 'kk'=>'detail_kk', 'sktm'=>'detail_sktm', 'domisili'=>'detail_domisili', 'pindah'=>'detail_pindah', 'skck'=>'detail_skck', 'kelahiran' => 'detail_kelahiran', 'kematian'=>'detail_kematian');
 
-		$title['judul'] = "Detail $caption";
-		$title['active'] = 'surat';
-		$title['menu'] = "layanan/status_layanan";
+		$data['judul'] = "Detail $caption";
+		$data['title'] = "Detail $caption";
+		$data['menu'] = "layanan/status_layanan";
+		$data['active'] = 'status_layanan';
 
 		$detail = $this->m_crud->readBy($tbl, array('id'=>$id));
 		$data['detail'] = $detail[0];
-		$data['judul'] = $title['judul'];
 		$data['dusun'] = DUSUN;
 		$data['surat'] = $surat;
 
-		$this->load->view('dashboard/templates/header', $title);
-        $this->load->view('dashboard/templates/sidebar', $title);
+		$this->load->view('dashboard/templates/header', $data);
+        $this->load->view('dashboard/templates/sidebar', $data);
         $this->load->view('dashboard/templates/topbar', $data);
         $this->load->view("user/surat/$view[$surat]", $data);
         $this->load->view('dashboard/templates/footer', $data);

@@ -85,8 +85,8 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 
-
 define('JK', array('l'=>'Laki-laki', 'p'=>'Perempuan'));
+define('CAT', array('pengumuman'=>'Pengumuman', 'utama'=>'Utama', 'artikel'=>'Artikel', 'event'=>'Event-Kegiatan'));
 define('GOLDAR', array('a'=>'A', 'b'=>'B', 'ab'=>'AB', 'o'=>'O', 'belum'=>'Belum Tahu'));
 define('DUSUN', array('0'=>'Belum Diisi','1'=>'Pager', '2'=>'Ngumbuk', '3'=>'Bendet'));
 define('AGAMA', array('islam'=>'Islam', 'kristen'=>'Kristen', 'katolik'=>'Katolik', 'hindu'=>'Hindu', 'buddha'=>'Buddha', 'konghucu'=>'Konghucu', 'lain'=>'Lainnya'));

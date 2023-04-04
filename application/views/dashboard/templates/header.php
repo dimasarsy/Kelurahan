@@ -183,6 +183,10 @@
         $('#listitemkeuangan').html(html);
     }
 
+    function hapus(link) {
+        $('#btnyakin').attr('href', link);
+        $('#modalhapus').modal('show');
+    }
 
     function hapusItem(id) {
         // var data = JSON.parse(window.datas);

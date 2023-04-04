@@ -20,34 +20,67 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Permintaan Persuratan</span>
+                    <div class="<?=($active=='surat'?'active':'')?>">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>Permintaan Persuratan</span>
+                    </div>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Pembuatan:</h6>
-                        <a class="collapse-item" href="<?= base_url('dashboard/surat/lihat/ktp'); ?>"><i
-                                class="icon-credit-card"></i> KTP</a>
-                        <a class="collapse-item" href="<?= base_url('dashboard/surat/lihat/kk'); ?>"><i
-                                class="icon-picture"></i> KK</a>
-                        <a class="collapse-item" href="<?= base_url('dashboard/surat/lihat/sktm'); ?>"><i
-                                class="icon-cogs"></i> SKTM</a>
-                        <a class="collapse-item" href="<?= base_url('dashboard/surat/lihat/skck'); ?>"><i
-                                class="icon-police"></i> SKCK</a>
-                        <a class="collapse-item" href="<?= base_url('dashboard/surat/lihat/domisili'); ?>"><i
-                                class="icon-globe"></i> Surat
-                            Domisili</a>
-                        <a class="collapse-item" href="<?= base_url('dashboard/surat/lihat/pindah'); ?>"><i
-                                class="icon-moving"></i> Surat
-                            Pindah</a>
-                        <a class="collapse-item" href="<?= base_url('dashboard/surat/lihat/kelahiran'); ?>"><i
-                                class="icon-baby"></i> Surat
-                            Kelahiran</a>
-                        <a class="collapse-item" href="<?= base_url('dashboard/surat/lihat/kematian'); ?>"><i
-                                class="icon-dead"></i> Surat
-                            Kematian</a>
+                        <a class="collapse-item" href="<?= base_url('dashboard/surat/lihat/ktp'); ?>">
+                            <div class="<?=($activee=='ktp'?'active':'')?>">
+                                <i class="icon-credit-card"></i> KTP
+                            </div>
+                        </a>
+                        <a class="collapse-item" href="<?= base_url('dashboard/surat/lihat/kk'); ?>">
+                            <div class="<?=($activee=='kk'?'active':'')?>">
+                                <i class="icon-picture"></i> KK
+                            </div>
+                        </a>
+                        <a class="collapse-item" href="<?= base_url('dashboard/surat/lihat/sktm'); ?>">
+                            <div class="<?=($activee=='sktm'?'active':'')?>">
+                                <i class="icon-cogs"></i> SKTM
+                            </div>
+                        </a>
+                        <a class="collapse-item" href="<?= base_url('dashboard/surat/lihat/skck'); ?>">
+                            <div class="<?=($activee=='skck'?'active':'')?>">
+                                <i class="icon-police"></i> SKCK
+                            </div>
+                        </a>
+                        <a class="collapse-item" href="<?= base_url('dashboard/surat/lihat/domisili'); ?>">
+                            <div class="<?=($activee=='domisili'?'active':'')?>">
+                                <i class="icon-globe"></i> Surat Domisili
+                            </div>
+                        </a>
+                        <a class="collapse-item" href="<?= base_url('dashboard/surat/lihat/pindah'); ?>">
+                            <div class="<?=($activee=='pindah'?'active':'')?>">
+                                <i class="icon-moving"></i> Surat Pindah
+                            </div>
+                        </a>
+                        <a class="collapse-item" href="<?= base_url('dashboard/surat/lihat/kelahiran'); ?>">
+                            <div class="<?=($activee=='kelahiran'?'active':'')?>">
+                                <i class="icon-baby"></i> Surat Kelahiran
+                            </div>
+                        </a>
+                        <a class="collapse-item" href="<?= base_url('dashboard/surat/lihat/kematian'); ?>">
+                            <div class="<?=($activee=='kematian'?'active':'')?>">
+                                <i class="icon-dead"></i> Surat Kematian
+                            </div>
+                        </a>
                     </div>
                 </div>
+            </li>
+
+            <hr class="sidebar-divider mt-3">
+
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('dashboard/berita'); ?>">
+                    <div class="<?=($active=='berita'?'active':'')?>">
+                        <i class="fas fa-fw fa-sign-out-alt"></i>
+                        <span>Berita</span>
+                    </div>
+                </a>
             </li>
 
             <hr class="sidebar-divider mt-3">

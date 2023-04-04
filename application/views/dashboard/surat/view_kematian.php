@@ -31,7 +31,7 @@
                         </li>
                     </ul>
                     <!-- end design process steps-->
-                    <a href="<?=base_url("dashboard/$judul/form/$surat/tambah")?>"
+                    <a href="<?=base_url("dashboard/surat/form/$surat/tambah")?>"
                         class="btn btn-success btn-fill pull-right" style="margin-top: -25px"><i class="fa fa-plus"
                             aria-hidden="true"></i>
                         <href> Tambah

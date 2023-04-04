@@ -19,17 +19,17 @@ class Surat extends CI_Controller{
 	}
 
 	function lihat($surat){
-		$title['judul'] = CAPTION[$surat];
+		$data['judul'] = CAPTION[$surat];
 		$view = array('kelahiran' => 'view_kelahiran', 'kematian'=>'view_kematian', 'ktp'=>'view_ktp', 'kk'=>'view_kk', 'sktm'=>'view_sktm', 'skck'=>'view_skck', 'domisili'=>'view_domisili', 'pindah'=>'view_pindah');
-		$title['active'] = 'surat';
+		$data['active'] = 'surat';
 
 		$tbl = TABEL[$surat];
 		$data['baru'] = $this->m_crud->readBy($tbl, array('status'=>surat_baru));
 		$data['proses'] = $this->m_crud->readBy($tbl, array('status'=>surat_proses));
 		$data['selesai'] = $this->m_crud->readBy($tbl, array('status'=>surat_selesai));
 
-		$data['judul'] = 'surat';
 		$data['surat'] = $surat;
+		$data['activee'] = $surat;
 
 		$data['c_baru'] = $this->m_crud->readCount($tbl, array("status"=>surat_baru));
 		$data['c_proses'] = $this->m_crud->readCount($tbl, array("status"=>surat_proses));
@@ -52,18 +52,19 @@ class Surat extends CI_Controller{
 		$caption = CAPTION[$surat];
 		$view = array('ktp'=>'detail_ktp', 'kk'=>'detail_kk', 'sktm'=>'detail_sktm', 'domisili'=>'detail_domisili', 'pindah'=>'detail_pindah', 'skck'=>'detail_skck', 'kelahiran' => 'detail_kelahiran', 'kematian'=>'detail_kematian');
 
-		$title['judul'] = "Detail $caption";
-		$title['active'] = 'surat';
-		$title['menu'] = "surat/lihat/$surat";
+		$data['judul'] = "Detail $caption";
+		$data['active'] = 'surat';
+		$data['menu'] = "surat/lihat/$surat";
 
 		$detail = $this->m_crud->readBy($tbl, array('id'=>$id));
 		$data['detail'] = $detail[0];
-		$data['judul'] = $title['judul'];
+		// $data['judul'] = $title['judul'];
 		$data['dusun'] = DUSUN;
 		$data['surat'] = $surat;
+		$data['activee'] = $surat;
 
-		$this->load->view('dashboard/templates/header', $title);
-        $this->load->view('dashboard/templates/sidebar_admin', $title);
+		$this->load->view('dashboard/templates/header', $data);
+        $this->load->view('dashboard/templates/sidebar_admin', $data);
         $this->load->view('dashboard/templates/topbar', $data);
         $this->load->view("dashboard/surat/$view[$surat]", $data);
         $this->load->view('dashboard/templates/footer', $data);
@@ -73,7 +74,8 @@ class Surat extends CI_Controller{
 		$tbl = TABEL;
 		$nosurat = array('ktp'=>'401', 'kk'=>'471.11', 'sktm'=>'452', 'domisili'=>'470', 'pindah'=>'473', 'skck'=>'473', 'kelahiran' => '472.11', 'kematian'=>'472.12');
 		$idsurat = array('ktp' => 'id_ktp', 'kk' => 'id_kk', 'sktm' => 'id_sktm', 'domisili' => 'id_domisili', 'pindah' => 'id_pindah', 'skck' => 'id_skck', 'kelahiran' => 'id_kelahiran', 'kematian'=>'id_kematian');
-
+		$data['activee'] = $surat;
+		
 		if (isset($_POST[$surat])) {
 			$nik = $_POST['nik'];
 			$data['status'] = surat_proses;

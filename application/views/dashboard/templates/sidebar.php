@@ -19,18 +19,27 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('user'); ?>">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>My Profile</span></a>
+                    <div class="<?=($active=='user'?'active':'')?>">
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>My Profile</span>
+                    </div>
+                </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('user/profil'); ?>">
-                    <i class="fas fa-fw fa-user-edit"></i>
-                    <span>Edit Account</span></a>
+                    <div class="<?=($active=='edit_profil'?'active':'')?>">
+                        <i class="fas fa-fw fa-user-edit"></i>
+                        <span>Edit Account</span>
+                    </div>
+                </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('user/changepassword'); ?>">
-                    <i class="fas fa-fw fa-key"></i>
-                    <span>Change Password</span></a>
+                    <div class="<?=($active=='change_password'?'active':'')?>">
+                        <i class="fas fa-fw fa-key"></i>
+                        <span>Change Password</span>
+                    </div>
+                </a>
             </li>
 
             <hr class="sidebar-divider mt-3">
@@ -41,8 +50,11 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('layanan/status_layanan'); ?>">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Status Surat</span></a>
+                    <div class="<?=($active=='status_layanan'?'active':'')?>">
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>Status Surat</span>
+                    </div>
+                </a>
             </li>
 
             <hr class="sidebar-divider mt-3">
