@@ -73,7 +73,7 @@
 
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
-                    <?php if(isset($_SESSION['nik'])) : ?>
+                    <?php if(isset($_SESSION['role_id'])) : ?>
 
                     <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
                         <div class="uname">
